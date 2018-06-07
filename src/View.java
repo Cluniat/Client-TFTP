@@ -85,7 +85,7 @@ public class View extends JFrame implements ActionListener {
         txtSendDistant.setColumns(10);
 
         btnSendFile = new JButton("Send");
-        btnSendFile.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+        btnSendFile.setFont(new Font("Helvetica", Font.PLAIN, 16));
         btnSendFile.setBounds(126, 123, 171, 39);
         sendPanel.add(btnSendFile);
 
@@ -108,7 +108,7 @@ public class View extends JFrame implements ActionListener {
         txtAdresse = new JTextField();
         txtAdresse.setBounds(102, 14, 124, 20);
         contentPane.add(txtAdresse);
-        txtAdresse.setText("127.0.0.1");
+//        txtAdresse.setText("127.0.0.1");
         txtAdresse.setColumns(10);
 
         JLabel lblPort = new JLabel("Port");

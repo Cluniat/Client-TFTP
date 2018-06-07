@@ -21,7 +21,7 @@ public class Commun {
     {
         ERR0(0, "Erreur inconnu"),
         ERR1(1, "Fichier non trouvé"),
-        ERR2(2, "Violation de l'accès"),
+        ERR2(2, "Violation de l'accès, erreure de transfert"),
         ERR3(3, "Disque plein"),
         ERR4(4, "Opération TFTP illégale"),
         ERR5(5, "Transfert ID inconnu"),

@@ -76,7 +76,7 @@ class Client {
                 }
                 catch (FileNotFoundException e) //Fichier non trouvé ou accès refusé.
                 {
-                    vue.getTxtInfoArea().append("Erreur -1 : Echec de l'ouverture du fichier\n");
+                    vue.getTxtInfoArea().append("Erreur -1 : Fichier local non trouvé\n");
                     return -1;
                 }
 

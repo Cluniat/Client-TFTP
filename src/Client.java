@@ -10,13 +10,13 @@ class Client {
         vue = p_vue;
     }
 
-    /*
-     * Constrution du paquet WRQ
-     *
-     * @param : int valeur
-     * Si valeur = 1, c'est un WRQ.
+    /**
+     * Construction du paquet WRQ
+     * @param nomFichier nom du fichier à transférer
+     * @param valeur numéro correspondant au type du paquet
+     * @return le paquet
      */
-    private byte[] paquetWRRQ(String nomFichier, int valeur) {
+    private byte[] paquet(String nomFichier, int valeur) {
         byte[] buffer = new byte[516];
         byte opCode[] = new byte[] {0, (byte)valeur};
         byte fichier[] = nomFichier.getBytes();
@@ -36,6 +36,15 @@ class Client {
         return buffer;
     }
 
+    /**
+     *
+     * @param p_path chemin vers le fichier
+     * @param p_nomFichier nom du fichier
+     * @param p_nomDistant nom du fichier distant ( le nom qu'on veut lui donner sur le serveur)
+     * @param p_adresse adresse du serveur
+     * @param p_port port du serveur
+     * @return le numéro de l'erreur
+     */
     int sendFile(String p_path, String p_nomFichier, String p_nomDistant, String p_adresse, int p_port) {
 
         DatagramPacket wrq;
@@ -49,7 +58,7 @@ class Client {
             socket = new DatagramSocket();
 
             //Envoi du WRQ
-            byte[] bufferEnvoi = paquetWRRQ(p_nomDistant, Commun.TypePaquet.WRQ.code);
+            byte[] bufferEnvoi = paquet(p_nomDistant, Commun.TypePaquet.WRQ.code);
             System.out.println(Commun.TypePaquet.WRQ.code);
             wrq = new DatagramPacket(bufferEnvoi, bufferEnvoi.length, ipServeur, p_port);
             socket.send(wrq);
@@ -88,10 +97,10 @@ class Client {
                     bufferEnvoi[2] = (byte) j;
                     bufferEnvoi[3] = (byte) (i+1);
 
-                    //Copie du buffer fichier après l'entete de 4 bytes
+                    //Copie du fichier après l'entete de 4 bytes
                     System.arraycopy(donneesFichier, 0, bufferEnvoi, 4, donneesFichier.length);
 
-                    //Tant que l'ACK n'est pas le bon on envoi le paquet
+                    //Tant que ce n'est pas l'ACK n'est pas le bon on envoie le paquet
                     // ou que ce n'est pas un ACK
                     int verifAck = -1;
                     DatagramPacket donnees = new DatagramPacket(bufferEnvoi, bufferEnvoi.length, ipServeur, portServeur);

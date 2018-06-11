@@ -1,7 +1,10 @@
-public class Commun {
-
+class Commun {
+    /**
+     * Identifie le type de paquet grâce à une valeur correspondant à celle du protocole TFTP
+     */
     public enum TypePaquet
     {
+        RRQ("RRQ" , 1),
         WRQ("WRQ", 2),
         DATA("DATA", 3),
         ACK("ACK", 4),
@@ -17,11 +20,14 @@ public class Commun {
         }
     }
 
+    /**
+     * Identifie le type d'erreur d'après le protocole TFTP
+     */
     public enum TypeErreurServeur
     {
         ERR0(0, "Erreur inconnu"),
         ERR1(1, "Fichier non trouvé"),
-        ERR2(2, "Violation de l'accès, erreure de transfert"),
+        ERR2(2, "Violation de l'accès, erreur de transfert"),
         ERR3(3, "Disque plein"),
         ERR4(4, "Opération TFTP illégale"),
         ERR5(5, "Transfert ID inconnu"),
@@ -37,6 +43,11 @@ public class Commun {
             this.code = p_code;
         }
 
+        /**
+         * Donne l'erreur correspndant à une valeur
+         * @param valeur de l'erreur qu'on souhaite identifier
+         * @return l'erreur recherchée
+         */
         public static TypeErreurServeur getStringFromValue(int valeur) {
             switch (valeur) {
                 case 0 :

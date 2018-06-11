@@ -27,6 +27,9 @@ public class View extends JFrame implements ActionListener {
     private Client client;
     private String distant;
 
+    /**
+     * Cherge la fenetre graphique client
+     */
     View() {
 
         setType(Window.Type.UTILITY);
@@ -39,6 +42,9 @@ public class View extends JFrame implements ActionListener {
         client = new Client(this);
     }
 
+    /**
+     * Séfini et place les composants de la fenêtre graphique
+     */
     private void chargerForm() {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -108,7 +114,6 @@ public class View extends JFrame implements ActionListener {
         txtAdresse = new JTextField();
         txtAdresse.setBounds(102, 14, 124, 20);
         contentPane.add(txtAdresse);
-//        txtAdresse.setText("127.0.0.1");
         txtAdresse.setColumns(10);
 
         JLabel lblPort = new JLabel("Port");
@@ -146,12 +151,17 @@ public class View extends JFrame implements ActionListener {
     }
 
 
+    /**
+     * Définit les actions de l'utilisateurs (entrer l'adresse, choisir un fichier, bouton send)
+     */
     public void actionPerformed(ActionEvent e) {
 
+        // Si on clique sur le bouton quitter
         if (e.getSource() == this.mnQuitter) {
             System.exit(0);
         }
 
+        // Si on clique sur le bouton find
         if (e.getSource() == this.btnFindSend) {
             JFileChooser chooser = new JFileChooser();
             chooser.setDialogTitle("Choisir un fichier");
@@ -162,7 +172,7 @@ public class View extends JFrame implements ActionListener {
             }
         }
 
-        //Vérification de l'adresse IP
+        //Vérification de l'adresse IP (si c'est le bon format)
         if(!txtAdresse.getText().matches(
                 "(([0-1]?[0-9]{1,2}\\.)|(2[0-4][0-9]\\.)|(25[0-5]\\.)){3}(([0-1]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))")
                 || txtAdresse.getText().isEmpty())
@@ -185,12 +195,12 @@ public class View extends JFrame implements ActionListener {
             }
         }
 
-        //Clique sur le bouton Send
+        //Si on clique sur le bouton Send
         if (e.getSource() == this.btnSendFile) {
             //Vérification du fichier local
             if(txtSendLocal.getText().isEmpty())
             {
-                JOptionPane.showMessageDialog(null, "Le nom local est vide");
+                JOptionPane.showMessageDialog(null, "Ce fichier n'existe pas ici");
                 return;
             }
             //Vérification du champ de renommage distant

@@ -11,7 +11,7 @@ class Client {
     }
 
     /**
-     * Construction du paquet WRQ
+     * Construction des paquets
      * @param nomFichier nom du fichier à transférer
      * @param valeur numéro correspondant au type du paquet
      * @return le paquet
